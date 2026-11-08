@@ -1,0 +1,35 @@
+services:
+  blocked-positions-app:
+    image: mcr.microsoft.com/devcontainers/java:25-bookworm
+    command: sleep infinity
+    volumes:
+      - ..:/workspaces/blocked_positions
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://blocked-positions-db:5432/blocked_positions
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_DOCKER_COMPOSE_ENABLED: "false"
+    depends_on:
+      blocked-positions-db:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8080:8080"
+
+  blocked-positions-db:
+    image: postgres:18
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: blocked_positions
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql
+      - ./init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d blocked_positions"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres-data:

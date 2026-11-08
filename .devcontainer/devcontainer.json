@@ -1,0 +1,17 @@
+{
+  "name": "blocked-positions-devcontainer",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "blocked-positions-app",
+  "workspaceFolder": "/workspaces/blocked_positions",
+  "forwardPorts": [8080, 5432],
+  "portsAttributes": {
+    "8080": {
+      "label": "Spring Boot"
+    },
+    "5432": {
+      "label": "PostgreSQL"
+    }
+  },
+  "postCreateCommand": "./gradlew test",
+  "remoteUser": "vscode"
+}
