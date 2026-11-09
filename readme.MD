@@ -8,9 +8,9 @@ or
 npx --yes @devcontainers/cli up --workspace-folder .
 npx --yes @devcontainers/cli exec --workspace-folder . ./gradlew bootRun
 ````
-
+# Use
 ````sh
-curl -X GET http://localhost:8080/blockedpositions
+curl -X GET http://localhost:8080
 ````
 # Info
 PostgreSQL initializes new database volumes with the table and sample rows from
