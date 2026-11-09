@@ -1,9 +1,10 @@
-A small example using devcontainer with spring boot and postgresql
+A small example using ````devcontainer```` with ````spring boot```` and ````postgresql````
 # Run
+## Locally with bootRun
 ````sh
 ./gradlew bootRun
 ````
-or
+## As a Dev Container
 ````sh
 npx --yes @devcontainers/cli up --workspace-folder .
 npx --yes @devcontainers/cli exec --workspace-folder . ./gradlew bootRun
