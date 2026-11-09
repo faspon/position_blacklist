@@ -1,5 +1,4 @@
 A small example using devcontainer with spring boot and postgresql
-
 # Run
 ````sh
 ./gradlew bootRun
