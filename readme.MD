@@ -1,19 +1,20 @@
+# Dev Container
 A small example using ````devcontainer```` with ````spring boot```` and ````postgresql````
-# Run
-## Locally with bootRun
+## Run
+### Locally with bootRun
 ````sh
 ./gradlew bootRun
 ````
-## As a Dev Container
+### As a Dev Container
 ````sh
 npx --yes @devcontainers/cli up --workspace-folder .
 npx --yes @devcontainers/cli exec --workspace-folder . ./gradlew bootRun
 ````
-# Use
+## Use
 ````sh
 curl -X GET http://localhost:8080
 ````
-# Info
+## Info
 PostgreSQL initializes new database volumes with the table and sample rows from
 `.devcontainer/init.sql`. Existing volumes are not initialized again. To apply
 the script to an existing database without deleting its data, run:
