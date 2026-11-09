@@ -36,8 +36,9 @@ public class BlockedPositionController {
             .getBean("requestMappingHandlerMapping", RequestMappingHandlerMapping.class);
     Map<RequestMappingInfo, HandlerMethod> map = requestMappingHandlerMapping
             .getHandlerMethods();
-    String endpoints = map.keySet().stream().map(RequestMappingInfo::toString).collect(Collectors.joining("\n"));
-    //map.forEach((key, value) -> LOGGER.info("{} {}", key, value));
+    String endpoints = map.keySet().stream()
+    .filter( null)
+    .map(t -> t.toString()).collect(Collectors.joining("\n"));
     return "Endpoints:\n\n" + endpoints;
   }
 
