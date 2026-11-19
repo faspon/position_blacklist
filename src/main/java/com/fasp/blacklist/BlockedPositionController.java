@@ -37,7 +37,6 @@ public class BlockedPositionController {
     Map<RequestMappingInfo, HandlerMethod> map = requestMappingHandlerMapping
             .getHandlerMethods();
     String endpoints = map.keySet().stream()
-    .filter( null)
     .map(t -> t.toString()).collect(Collectors.joining("\n"));
     return "Endpoints:\n\n" + endpoints;
   }
@@ -51,7 +50,8 @@ public class BlockedPositionController {
   // end::get-aggregate-root[]
 
   @PostMapping("/blockedpositions")
-  BlockedPosition newEmployee(@RequestBody BlockedPosition newBlockedPosition) {
+  BlockedPosition newBlockedPosition(@RequestBody BlockedPosition newBlockedPosition) {
+    newBlockedPosition.setId(null);
     return repository.save(newBlockedPosition);
   }
 
@@ -70,10 +70,10 @@ public class BlockedPositionController {
     return repository.findById(id)
       .map(pos -> {
         pos.setName(newBlockedPosition.getName());
-        pos.setId(newBlockedPosition.getId());
         return repository.save(pos);
       })
       .orElseGet(() -> {
+        newBlockedPosition.setId(id);
         return repository.save(newBlockedPosition);
       });
   }
